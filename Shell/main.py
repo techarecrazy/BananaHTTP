@@ -11,7 +11,7 @@ while True:
   print(address)
   response = f"./website{client.recv(1024).decode().splitlines()[0].split()[1]}"
   if response == "./website/":
-    response = "index.html"
+    response = "./website/index.html"
     system(f"sh request.sh {response}")
   else:
     system(f"sh request.sh {response}")
