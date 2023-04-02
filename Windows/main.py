@@ -1,5 +1,4 @@
 import socket
-from os import system
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -8,11 +7,8 @@ sock.listen(1)
 
 while True:
   client, address = sock.accept()
-  print(address)
-  response = f"./website{client.recv(1024).decode().splitlines()[0].split()[1]}"
-  if response == "./website/":
-    response = ". /website/index.html"
-    system(f"request.bat {response}")
-  else:
-    system(f"request.bat {response}")
-  client.send(open("http.txt", "rb").read())
+  decoded = client.recv(1024)
+  try:
+    client.send(str(f"HTTP/1.1 200 OK \n\n{open(f'./website{client.recv(1024).decode().splitlines()[0].split()[1]}', 'rb').read()}").encode('utf-8'))
+  except FileNotFoundError:
+    client.send("HTTP/1.1 404 Not Found".encode("utf-8"))
