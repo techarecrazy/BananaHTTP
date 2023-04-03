@@ -9,6 +9,6 @@ while True:
   client, address = sock.accept()
   decoded = client.recv(1024)
   try:
-    client.send(str(f"HTTP/1.1 200 OK \n\n{open(f'./website{client.recv(1024).decode().splitlines()[0].split()[1]}', 'rb').read()}").encode('utf-8'))
+    client.send(str(f"HTTP/1.1 200 OK \n\n{open(f'.{client.recv(1024).decode().splitlines()[0].split()[1]}', 'rb').read()}").encode('utf-8'))
   except FileNotFoundError:
     client.send("HTTP/1.1 404 Not Found".encode("utf-8"))
