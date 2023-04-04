@@ -8,4 +8,5 @@ A HTTP 1.1 Server
 3. Find version for your os
 
 5. Type `python main.py`
-6. Go to [127.0.0.1:8080](http://127.0.0.1:8080)
+6. Go to [127.0.0.1:8080/index.html](http://127.0.0.1:8080/index.html)
+7. Don't go to directories on generic version. A 404 will pop up
