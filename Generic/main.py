@@ -8,6 +8,6 @@ sock.listen(1)
 while True:
   client, address = sock.accept()
   try:
-    client.send(f"HTTP/1.1 200 OK\n\n{open(f'{input('Server Dir: ')}{client.recv(1024).decode().splitlines()[0].split()[1]}', 'r').read()}".encode('utf-8'))
+    client.send(f"HTTP/1.1 200 OK\n\n{open(f'{client.recv(1024).decode().splitlines()[0].split()[1]}', 'r').read()}".encode('utf-8'))
   except (FileNotFoundError, IsADirectoryError): 
     client.send("HTTP/1.1 404 Not Found".encode("utf-8"))
