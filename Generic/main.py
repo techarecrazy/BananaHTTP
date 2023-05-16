@@ -1,6 +1,6 @@
-import socket as so
+import socket as k
 
-s = so.socket(so.AF_INET, so.SOCK_STREAM)
+s = k.socket(k.AF_INET, k.SOCK_STREAM)
 s.bind(("0.0.0.0", 8080))
 s.listen(5)
 
