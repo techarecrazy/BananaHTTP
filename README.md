@@ -1,7 +1,7 @@
 # SimpleHTTP by techarecrazy
 A HTTP 1.1 Server
 
-<meta name="google-site-verification" content="5pEbTs30cbiBYKQHcVZBLVkUhHSwvLIytd1OCRuLB94" />
+
 
 ### How to use
 
