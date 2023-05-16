@@ -1,12 +1,12 @@
-import socket
+import socket as so
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-sock.bind(("0.0.0.0", 8080))
-sock.listen(5)
+s = so.socket(so.AF_INET, so.SOCK_STREAM)
+s.bind(("0.0.0.0", 8080))
+s.listen(5)
 
 while True:
-  client, _ = sock.accept()
+  c, _ = s.accept()
   try:
-    client.send(f"HTTP/1.1 200 OK\n\n{open('.{client.recv(1024).decode().splitlines()[0].split()[1]}', 'r').read()}".encode('utf-8'))
+    c.send(f"HTTP/1.1 200 OK\n\n{open('.{c.recv(1024).decode().splitlines()[0].split()[1]}', 'r').read()}".encode())
   except (FileNotFoundError, IsADirectoryError): 
-    client.send("HTTP/1.1 404 Not Found".encode("utf-8"))
+    c.send("HTTP/1.1 404 Not Found".encode("utf-8"))
