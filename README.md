@@ -1,4 +1,4 @@
-# SimpleHTTP
+# SimpleHTTP by techarecrazy
 A HTTP 1.1 Server
 
 ### How to use
