@@ -1,5 +1,5 @@
-# SimpleHTTP by techarecrazy
-A HTTP 1.1 Server
+# Banana HTTP Stuff by techarecrazy
+A Web browser + 2 Servers pack
 
 
 
