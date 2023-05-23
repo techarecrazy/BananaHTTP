@@ -1,7 +1,6 @@
 import socket as k
 import sys
 
-
 s = k.socket(k.AF_INET, k.SOCK_STREAM)
 s.bind(("0.0.0.0", int(sys.argv[1])))
 s.listen(5)
