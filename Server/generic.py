@@ -6,5 +6,7 @@ s.listen(5)
 
 while True:
   c, _ = s.accept()
-  try: c.send(b"HTTP/1.1 200 OK\n\n" + open('.'+c.recv(1024).decode().split()[1], 'rb').read())
+  path = '.'+c.recv(1024).decode().split()[1]
+  if path.endswith("/"): path = path + "index.html"
+  try: c.send(b"HTTP/1.1 200 OK\n\n" + open(path, 'rb').read())
   except (FileNotFoundError, IsADirectoryError): c.send(b"HTTP/1.1 404 Not Found")
