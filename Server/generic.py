@@ -1,12 +1,11 @@
 import socket as k
 
-s = k.socket(k.AF_INET, k.SOCK_STREAM)
+s = k.socket()
 s.bind(("0.0.0.0", 8080))
 s.listen(5)
 
-while True:
-  c, _ = s.accept()
-  path = '.'+c.recv(1024).decode().split()[1]
-  if path.endswith("/"): path = path + "index.html"
-  try: c.send(b"HTTP/1.1 200 OK\n\n" + open(path, 'rb').read())
-  except (FileNotFoundError, IsADirectoryError): c.send(b"HTTP/1.1 404 Not Found")
+while 1:
+  c, _ = s.accept()                                                          path = '.'+c.recv(1024).decode().split()[1]
+    if path.endswith("/"): path = path + "index.html"
+      try: c.send(b"HTTP/1.1 200 OK\n\n"+open(path, 'rb').read())
+        except: c.send(b"HTTP/1.1 404 Not Found")
