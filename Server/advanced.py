@@ -1,4 +1,5 @@
 import socket as k
+import re
 
 s = k.socket()
 s.bind(("", 8080))
@@ -8,12 +9,9 @@ while 1:
   c=s.accept()[0]
   response=c.recv(1024).decode()
   path='.'+response.split()[1]
-  method=response.split()[0]
-  if method == "GET":
+  if response.split()[0] == "GET":
       if path.endswith("/"): path+="index.html"
       try: c.send(b"HTTP/1.1 200 OK\n\n"+open(path, 'rb').read())
       except: c.send(b"HTTP/1.1 404 Not Found")
-  if method == "POST":
-    #TODO: Implement Post method
-    c.send("HTTP/1.1 501 Not Implemented")
+  if response.split()[0] == "POST": open(path, "w").write(re.split("\n\n", response))
   c.close()
