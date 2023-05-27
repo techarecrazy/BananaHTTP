@@ -1,7 +1,7 @@
 import socket as k
 
 s = k.socket()
-s.bind(("0.0.0.0", 8080))
+s.bind(("", 8080))
 s.listen(5)
 
 while 1:
