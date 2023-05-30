@@ -1,4 +1,4 @@
-mport socket
+import socket
 import mimetypes as m
 import re
 
