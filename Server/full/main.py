@@ -14,6 +14,6 @@ while 1:
   if "audio/" in mime: r(open("audio.html", 'rb').read().format(path=path))
   if "video/" in mime: r(open("video.html", 'rb').read().format(path=path))
   if path.endswith("/"): path+="index.html"
-  try: respond(c, path)
+  try: r(path)
   except: c.send(b"HTTP/1.1 404 Not Found")
   c.close()
