@@ -12,8 +12,8 @@ while 1:
   path='.'+c.recv(1024).decode().split()[1]
   mime=m.guess_type(path)
   if ".." in path: c.send("HTTP/1.1 403 Forbidden")
-  if mime.startswith("audio/"): respond(c, open("audio.html", 'rb').read().format(path=path)))
-  if mime.startswith("video/"): respond(c, open("video.html", 'rb').read().format(path=path)))
+  if "audio/" in mime: respond(c, open("audio.html", 'rb').read().format(path=path)))
+  if "video/" in mime: respond(c, open("video.html", 'rb').read().format(path=path)))
   if path.endswith("/"): path+="index.html"
   try: respond(c, path)
   except: c.send(b"HTTP/1.1 404 Not Found")
