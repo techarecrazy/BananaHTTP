@@ -8,8 +8,8 @@ s.listen(5)
 while 1:
   c=s.accept()[0]
   path='.'+c.recv(1024).decode().split()[1]
-  elif ".." or "//" in path: c.send(b"HTTP/1.1 403 Forbidden")
-  if path.endswith("/"): 
+  if ".." or "//" in path: c.send(b"HTTP/1.1 403 Forbidden")
+  elif path.endswith("/"): 
     t=f"<html><body><h1>Directory listing of {path[1:]}:</h1><br>"
     for f in os.listdir(path): if f!="index.html": t+=f"<a href='{f}'>{f}</a><br>"; else: path+="index.html"
     t+="</body></html>"
