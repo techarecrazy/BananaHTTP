@@ -11,7 +11,7 @@ while 1:
   elif ".." or "//" in path: c.send(b"HTTP/1.1 403 Forbidden")
   if path.endswith("/"): 
     t=f"<html><body><h1>Directory listing of {path[1:]}:</h1><br>"
-    for f in os.listdir(path): if f != "index.html": t += f"<a href='{f}'>{f}</a><br>"; else: path += "index.html"
+    for f in os.listdir(path): if f!="index.html": t+=f"<a href='{f}'>{f}</a><br>"; else: path+="index.html"
     t+="</body></html>"
     c.send(b"HTTP/1.1 200 OK\n\n"+t.encode())
   else: send(c)
