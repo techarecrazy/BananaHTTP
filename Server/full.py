@@ -15,6 +15,8 @@ while 1:
     for f in os.listdir(path): t+=f"<a href='{f}'>{f}</a><br>"
     c.send(b"HTTP/1.1 200 OK\n\n<html><body><h1>Directory listing:</h1><br>"+t.encode()+"</body></html>")
   else:
-    try: c.send(b"HTTP/1.1 200 OK\n\n"+open(path, 'rb').read())
+    try: with open(path, 'rb') as f:
+      c.send(b"HTTP/1.1 200 OK\n\n"+f.read())
+      f.close()
     except: c.send(b"HTTP/1.1 404 Not Found")
   c.close()
