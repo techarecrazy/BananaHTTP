@@ -11,15 +11,10 @@ while 1:
   except IndexError: continue;
   if ".." or "//" in path: c.send(b"HTTP/1.1 403 Forbidden")
   if path[-1]=="/":
-    t=f"<html><body><h1>Directory listing:</h1><br>"
-    for f in os.listdir(path):
-      if f!="index.html": t+=f"<a href='{f}'>{f}</a><br>"
-      else: path+="index.html"
-    t+="</body></html>"
-    c.send(b"HTTP/1.1 200 OK\n\n"+t.encode())
+    t=""
+    for f in os.listdir(path): t+=f"<a href='{f}'>{f}</a><br>"
+    c.send(b"HTTP/1.1 200 OK\n\n<html><body><h1>Directory listing:</h1><br>"+t.encode()+"</body></html>")
   else:
-    try:
-      with open(path, 'rb') as f:                                                                         o=f.read()
-        c.send(b"HTTP/1.1 200 OK\n\n"+o)                                                                  f.close()
+    try: c.send(b"HTTP/1.1 200 OK\n\n"+open(path, 'rb').read())
     except: c.send(b"HTTP/1.1 404 Not Found")
   c.close()
