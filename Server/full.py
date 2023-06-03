@@ -17,6 +17,10 @@ while 1:
     t+="</body></html>"
     c.send(b"HTTP/1.1 200 OK\n\n"+t.encode())
   else:
-    try: c.send(b"HTTP/1.1 200 OK\n\n"+with open(path, 'rb') as f: f.read(); f.close())
+    try:
+      with open(path, 'rb') as f:
+        o=f.read()
+        c.send(b"HTTP/1.1 200 OK\n\n"+o)
+        f.close()
     except: c.send(b"HTTP/1.1 404 Not Found")
   c.close()
