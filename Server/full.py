@@ -9,7 +9,7 @@ while 1:
   c=s.accept()[0]
   try: path='.'+c.recv(1024).decode().split()[1]
   except IndexError: continue;
-  if os.path.isdir(path): path += "/"
+  if os.path.isdir(path) and not path.endswith("/"): path += "/"
   if ".." or "//" in path: c.send(b"HTTP/1.1 403 Forbidden")
   if path[-1]=="/":
     t=""
