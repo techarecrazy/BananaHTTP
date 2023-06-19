@@ -5,7 +5,6 @@ s = k.socket()
 s.bind(("", 8080))
 s.listen(5)
 
-
 while 1:
   c=s.accept()[0]
   try: path='.'+c.recv(1024).decode().split()[1]
