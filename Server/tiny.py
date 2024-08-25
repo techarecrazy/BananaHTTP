@@ -1,6 +1,4 @@
-import socket as k
-
-s = k.socket()
+s = __import__("socket").socket()
 s.bind(("",8080))
 s.listen(1)
 
